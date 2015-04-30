@@ -5,12 +5,17 @@ import android.widget.ArrayAdapter
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import kotlinx.android.anko.*
+import org.jetbrains.anko.*
 import android.view.Gravity
 import kotlin.properties.Delegates
 
 public abstract class ListItemAdapter(ctx: Context, items: List<ListItem>) : ArrayAdapter<ListItem>(ctx, 0, items) {
-    public inline fun <T> dsl(f: Context.() -> T): T = getContext().let { it.f() }
+    public inline fun <T: Any> dsl(inlineOptions(InlineOption.ONLY_LOCAL_RETURN) f: UiHelper.() -> T): T {
+        var view: T? = null
+        getContext().UI { view = f() }
+        return view!!
+    }
+
     protected abstract val listItemClasses: List<Class<out ListItem>>
 
     private val types: Map<Class<out ListItem>, Int> by Delegates.lazy {

@@ -7,7 +7,7 @@ import android.widget.ArrayAdapter
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import kotlinx.android.anko.*
+import org.jetbrains.anko.*
 import android.view.Gravity
 import android.graphics.Color
 import org.example.ankodemo.util.*

@@ -2,11 +2,13 @@ package org.example.ankodemo
 
 import android.app.*
 import android.content.Context
+import android.content.res.Configuration
 import android.view.*
 import android.widget.*
-import kotlinx.android.anko.*
+import org.jetbrains.anko.*
 import android.os.Bundle
 import android.text.InputType.*
+import org.jetbrains.anko.custom.customView
 
 class MainActivity : Activity() {
 
