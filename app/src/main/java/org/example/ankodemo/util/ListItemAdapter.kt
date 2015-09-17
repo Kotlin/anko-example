@@ -10,9 +10,9 @@ import android.view.Gravity
 import kotlin.properties.Delegates
 
 public abstract class ListItemAdapter(ctx: Context, items: List<ListItem>) : ArrayAdapter<ListItem>(ctx, 0, items) {
-    public inline fun <T: Any> dsl(inlineOptions(InlineOption.ONLY_LOCAL_RETURN) f: UiHelper.() -> T): T {
+    public inline fun <T: Any> dsl(crossinline f: UiHelper.() -> T): T {
         var view: T? = null
-        getContext().UI { view = f() }
+        context.UI { view = f() }
         return view!!
     }
 
@@ -34,13 +34,13 @@ public abstract class ListItemAdapter(ctx: Context, items: List<ListItem>) : Arr
             // Here we use findViewById method, but if you rich widget hierarchy in list item layouts,
             // implement ViewHolder as described here:
             // http://developer.android.com/training/improving-layouts/smooth-scrolling.html#ViewHolder
-            (v as? TextView ?: v.findViewById(android.R.id.text1) as? TextView)?.setText(item.text)
+            (v as? TextView ?: v.findViewById(android.R.id.text1) as? TextView)?.text = item.text
             return v
         } else return convertView
     }
 }
 
-public trait ListItem {
+public interface ListItem {
     val text: CharSequence
     open fun create(a: ListItemAdapter): View = a.dsl {
         textView {

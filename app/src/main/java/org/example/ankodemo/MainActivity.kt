@@ -9,6 +9,9 @@ import org.jetbrains.anko.*
 import android.os.Bundle
 import android.text.InputType.*
 import org.jetbrains.anko.custom.customView
+import java.lang.ref.WeakReference
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Future
 
 class MainActivity : Activity() {
 
@@ -25,7 +28,7 @@ class MainActivity : Activity() {
         verticalLayout {
             padding = dip(32)
 
-            imageView(android.R.drawable.ic_menu_manage).layoutParams {
+            imageView(android.R.drawable.ic_menu_manage).lparams {
                 margin = dip(16)
                 gravity = Gravity.CENTER
             }
@@ -47,11 +50,16 @@ class MainActivity : Activity() {
     }
 
     private fun tryLogin(name: CharSequence?, password: CharSequence?) {
-        if (checkCredentials(name.toString(), password.toString())) {
-            toast("Logged in! :)")
-            startActivity<CountriesActivity>()
-        } else {
-            toast("Wrong password :( Enter user:password")
+        async {
+            Thread.sleep(500)
+            activityUiThread {
+                if (checkCredentials(name.toString(), password.toString())) {
+                    toast("Logged in! :)")
+                    startActivity<CountriesActivity>()
+                } else {
+                    toast("Wrong password :( Enter user:password")
+                }
+            }
         }
     }
 

@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlin_version = '0.12.200'
+    ext.kotlin_version = '0.13.1513'
     repositories {
         jcenter()
     }
@@ -12,13 +12,13 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 22
+    compileSdkVersion 23
     buildToolsVersion "22.0.1"
 
     defaultConfig {
         applicationId "example.org.ankodemo"
         minSdkVersion 15
-        targetSdkVersion 22
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
     }
@@ -37,7 +37,7 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:22.1.1'
+    compile 'com.android.support:appcompat-v7:23.0.1'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    compile 'org.jetbrains.anko:anko:0.6.2-15s'
+    compile 'org.jetbrains.anko:anko-sdk15:0.7'
 }

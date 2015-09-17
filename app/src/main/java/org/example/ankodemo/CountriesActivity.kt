@@ -18,7 +18,7 @@ public class CountriesActivity : ListActivity() {
         super.onCreate(savedInstanceState)
 
         val items = listOf(
-                "America" to listOf("Brasil", "Canada", "United States"),
+                "America" to listOf("Brazil", "Canada", "United States"),
                 "Asia" to listOf("China", "India", "Japan"),
                 "Europe" to listOf("France", "Germany", "Spain", "United Kingdom"))
 
@@ -26,7 +26,7 @@ public class CountriesActivity : ListActivity() {
             listOf(ContinentItem(it.first)) + it.second.map { CountryItem(it) }
         }
 
-        setListAdapter(CountriesAdapter(this, listItems))
+        listAdapter = CountriesAdapter(this, listItems)
     }
 }
 
@@ -42,8 +42,8 @@ class ContinentItem(override val text: String) : ListItem {
     override fun create(a: ListItemAdapter) = a.dsl {
         textView {
             gravity = Gravity.CENTER_VERTICAL
-            paddingHorizontal = dip(20)
-            paddingVertical = dip(10)
+            horizontalPadding = dip(20)
+            verticalPadding = dip(10)
             backgroundColor = 0x99CCCCCC.toInt()
             textSize = 17f
             textColor = Color.BLUE
