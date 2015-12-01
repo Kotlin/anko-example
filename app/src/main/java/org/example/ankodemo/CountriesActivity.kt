@@ -1,19 +1,16 @@
 package org.example.ankodemo
 
 import android.app.ListActivity
-import android.os.Bundle
 import android.content.Context
-import android.widget.ArrayAdapter
-import android.view.View
-import android.view.ViewGroup
-import android.widget.BaseAdapter
-import org.jetbrains.anko.*
-import android.view.Gravity
 import android.graphics.Color
-import org.example.ankodemo.util.*
+import android.os.Bundle
+import android.view.Gravity
+import org.example.ankodemo.util.ListItem
+import org.example.ankodemo.util.ListItemAdapter
+import org.example.ankodemo.util.TextListItem
+import org.jetbrains.anko.*
 
 public class CountriesActivity : ListActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -30,23 +27,23 @@ public class CountriesActivity : ListActivity() {
     }
 }
 
-class CountriesAdapter(ctx: Context, items: List<ListItem>) : ListItemAdapter(ctx, items) {
-    override val listItemClasses = listOf(javaClass<ContinentItem>(), javaClass<CountryItem>())
+internal class CountriesAdapter(ctx: Context, items: List<ListItem>) : ListItemAdapter(ctx, items) {
+    // All ListItem implementations
+    override val listItemClasses = listOf(ContinentItem::class.java, CountryItem::class.java)
 }
 
 // Default implementation
-class CountryItem(override val text: String) : ListItem
+// DSL preview plugin requires AnkoComponent inheritors to have an empty constructor
+internal class CountryItem(text: String = "") : TextListItem(text)
 
 // Custom implementation
-class ContinentItem(override val text: String) : ListItem {
-    override fun create(a: ListItemAdapter) = a.dsl {
-        textView {
-            gravity = Gravity.CENTER_VERTICAL
-            horizontalPadding = dip(20)
-            verticalPadding = dip(10)
-            backgroundColor = 0x99CCCCCC.toInt()
-            textSize = 17f
-            textColor = Color.BLUE
-        }
+internal class ContinentItem(text: String = "") : TextListItem(text) {
+    override fun createView(ui: AnkoContext<ListItemAdapter>) = createTextView(ui) {
+        gravity = Gravity.CENTER_VERTICAL
+        horizontalPadding = ui.dip(20)
+        verticalPadding = ui.dip(10)
+        backgroundColor = 0x99CCCCCC.toInt()
+        textSize = 17f
+        textColor = Color.BLUE
     }
 }
