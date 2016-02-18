@@ -10,7 +10,7 @@ import org.example.ankodemo.util.ListItemAdapter
 import org.example.ankodemo.util.TextListItem
 import org.jetbrains.anko.*
 
-public class CountriesActivity : ListActivity() {
+class CountriesActivity : ListActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

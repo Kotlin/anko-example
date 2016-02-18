@@ -60,5 +60,5 @@ class RichView : LinearLayout {
 }
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun ViewManager.myRichView() = myRichView {}
-public inline fun ViewManager.myRichView(init: RichView.() -> Unit) = ankoView({ RichView(it) }, init)
+inline fun ViewManager.myRichView() = myRichView {}
+inline fun ViewManager.myRichView(init: RichView.() -> Unit) = ankoView({ RichView(it) }, init)

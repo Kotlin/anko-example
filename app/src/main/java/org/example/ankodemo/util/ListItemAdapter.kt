@@ -21,7 +21,7 @@ abstract class ListItemAdapter(ctx: Context, items: List<ListItem>) : ArrayAdapt
     }
 
     override fun getViewTypeCount(): Int = types.size
-    override fun getItemViewType(position: Int) = types.getRaw(getItem(position)?.javaClass) ?: 0
+    override fun getItemViewType(position: Int) = types[getItem(position)?.javaClass as Class<out ListItem>] ?: 0
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View? {
         val item = getItem(position)
@@ -41,7 +41,7 @@ internal open class TextListItem(val text: String) : ListItem {
     protected inline fun createTextView(ui: AnkoContext<ListItemAdapter>, init: TextView.() -> Unit) = ui.apply {
         textView {
             id = android.R.id.text1
-            setText("Text list item") // default text (for the preview)
+            text = "Text list item" // default text (for the preview)
             init()
         }
     }.view

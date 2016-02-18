@@ -16,7 +16,7 @@ class MainActivity : Activity() {
     }
 
     fun tryLogin(ui: AnkoContext<MainActivity>, name: CharSequence?, password: CharSequence?) {
-        ui.async {
+        ui.async() {
             Thread.sleep(500)
 
             activityUiThreadWithContext {
