@@ -20,7 +20,7 @@ class RichView : LinearLayout {
         gravity = CENTER
         padding = dip(24)
 
-        image = imageView(R.drawable.kotlin) {
+        image = imageView(imageResource = R.drawable.kotlin) {
             onClick { startAnimation() }
 
             padding = dip(8)
@@ -60,5 +60,5 @@ class RichView : LinearLayout {
 }
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun ViewManager.myRichView() = myRichView {}
-inline fun ViewManager.myRichView(init: RichView.() -> Unit) = ankoView({ RichView(it) }, init)
+inline fun ViewManager.myRichView(theme: Int = 0) = myRichView({}, theme)
+inline fun ViewManager.myRichView(init: RichView.() -> Unit, theme: Int = 0) = ankoView(::RichView, theme, init)

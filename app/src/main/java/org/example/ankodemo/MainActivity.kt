@@ -16,7 +16,7 @@ class MainActivity : Activity() {
     }
 
     fun tryLogin(ui: AnkoContext<MainActivity>, name: CharSequence?, password: CharSequence?) {
-        ui.async() {
+        ui.doAsync {
             Thread.sleep(500)
 
             activityUiThreadWithContext {
@@ -65,6 +65,6 @@ class MainActivityUi : AnkoComponent<MainActivity> {
             }
 
             myRichView()
-        }.style(customStyle)
+        }.applyRecursively(customStyle)
     }
 }
