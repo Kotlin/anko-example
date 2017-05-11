@@ -37,7 +37,7 @@ interface ListItem : AnkoComponent<ListItemAdapter> {
     fun apply(convertView: View)
 }
 
-internal open class TextListItem(val text: String) : ListItem {
+internal open class TextListItem(val text: String = "") : ListItem {
     protected inline fun createTextView(ui: AnkoContext<ListItemAdapter>, init: TextView.() -> Unit) = ui.apply {
         textView {
             id = android.R.id.text1
