@@ -1,12 +1,12 @@
 package org.example.ankodemo
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.text.InputType.TYPE_CLASS_TEXT
 import android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
 import android.view.Gravity
 import android.widget.Button
 import android.widget.EditText
+import androidx.appcompat.app.AppCompatActivity
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 
